@@ -1,0 +1,35 @@
+{
+    "name": "rwbuild/dashboard",
+    "description": "A admin dashboard package",
+    "require": {
+        "hisorange/browser-detect": "^4.4"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Elijah Busanga",
+            "email": "elijahbus.ny@gmail.com",
+            "role": "Backend Dev"
+        },
+        {
+            "name": "Irenee Baghor",
+            "role": "Frontend Dev"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Dashboard\\": "src/"
+        },
+        "files": [
+            "app/Helpers/DashboardHelpers.php"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Dashboard\\Providers\\DashboardServiceProvider",
+                "Dashboard\\Providers\\DashboardSetupServiceProvider"
+            ]
+        }
+    }
+}

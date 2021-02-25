@@ -1,0 +1,50 @@
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class VisitorTrackingTables extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('visitor_profiles', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->bigInteger('user_id')->nullable();
+            $table->boolean('is_auth')->default(false);
+            $table->text('token');
+            $table->string('ip');
+            $table->string('device');
+            $table->dateTime('last_visit_started_at');
+            $table->dateTime('last_visit_ended_at');
+            $table->integer('visits_count');
+            $table->timestamps();
+        });
+
+        Schema::create('visitor_logs', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->bigInteger('visitor_id');
+            $table->boolean('is_returning');
+            $table->dateTime('visit_started_at');
+            $table->dateTime('visit_ended_at');
+            $table->integer('online_avg_time_spent')->nullable();
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('visitor_profiles');
+        Schema::dropIfExists('visitor_logs');
+    }
+}

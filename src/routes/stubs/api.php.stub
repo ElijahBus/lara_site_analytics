@@ -1,0 +1,10 @@
+
+/*
+|--------------------------------------------------------------------------
+| Dashboard routes
+|--------------------------------------------------------------------------
+*/
+Route::group(['namespace' => 'Dashboard'], function () {
+    Route::post('track-page-views', 'TrackingController@trackPageView');
+    Route::post('track-feature-visit', 'TrackingController@trackFeatureVisit');
+});

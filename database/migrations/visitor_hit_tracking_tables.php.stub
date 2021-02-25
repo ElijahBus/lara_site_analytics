@@ -1,0 +1,41 @@
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class VisitorHitTrackingTables extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('page_analytics', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->text('visitor_token');
+            $table->string('page_name');
+            $table->timestamps();
+        });
+
+        Schema::create('feature_analytics', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->text('visitor_token');
+            $table->string('feature_name');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('page_analytics');
+        Schema::dropIfExists('feature_analytics');
+    }
+}

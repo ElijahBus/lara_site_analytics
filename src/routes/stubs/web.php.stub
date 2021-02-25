@@ -1,0 +1,34 @@
+
+/*
+|--------------------------------------------------------------------------
+| Dashboard Routes
+|--------------------------------------------------------------------------
+*/
+Route::group(['namespace' => 'Dashboard', 'prefix' => 'dashboard'], function () {
+
+    Route::get('/', 'HomeController@index')->name('dashboard.home');
+    Route::get('/Analytics', 'HomeController@index')->name('dashboard.analytics');
+
+    Route::get('/Users', 'UserRolesPermissionsController@index')->name('dashboard.users');
+    Route::post('/user/show', 'UserRolesPermissionsController@show')->name('dashboard.show_user');
+    Route::post('user/roles', 'UserRolesPermissionsController@addRoles')->name('user.roles.add');
+    Route::post('user/roles/remove', 'UserRolesPermissionsController@removeRoles')->name('user.roles.remove');
+    Route::post('user/permissions', 'UserRolesPermissionsController@addPermissions')->name('user.permissions.add');
+    Route::post('user/permissions/remove', 'UserRolesPermissionsController@removePermissions')->name('user.permissions.remove');
+
+    Route::get('/Roles', 'RoleController@index')->name('dashboard.roles');
+    Route::resource('/role', 'RoleController');
+    Route::post('role/permissions', 'RoleController@addPermissions')->name('role.permissions.add');
+    Route::post('role/permissions/remove', 'RoleController@removePermissions')->name('role.permissions.remove');
+    Route::post('/role/display', 'RoleController@displayRole')->name('role.display');
+
+    Route::get('/Permissions', 'PermissionController@index')->name('dashboard.permissions');
+    Route::resource('permissions', 'PermissionController');
+    Route::post('/permission/display', 'PermissionController@displayPermission')->name('permission.display');
+
+    Route::get('/TOS', 'TosController@index')->name('dashboard.tos');
+    Route::resource('tos', 'TosController');
+    Route::post('/tos/display', 'TosController@displayTos')->name('tos.display');
+
+    Route::get('/Reports', 'ReportController@index')->name('dashboard.reports');
+});
