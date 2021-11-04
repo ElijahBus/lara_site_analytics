@@ -62,6 +62,7 @@ class DashboardServiceProvider extends ServiceProvider
             ],
 
             // publish models
+            //TODO: pulish models dependig on the models path configured in the dashboardmodels config file
             "models" => [
                 "$basePath/./models" => app_path()
             ],
@@ -85,8 +86,9 @@ class DashboardServiceProvider extends ServiceProvider
             "contracts" => [
                 "$basePath/./Contracts/" => app_path('Contracts/')
             ],
-
+            
             "traits" => [
+                //TODO: Remove this fro publishables and directly load the validateRequest from the package
                 "$basePath/./Traits/ValidateRequest.php" => app_path('Traits/Dashboard/ValidateRequest.php')
             ],
 
