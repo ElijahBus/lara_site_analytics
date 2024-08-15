@@ -83,7 +83,7 @@ class DashboardServiceProvider extends ServiceProvider
 
             // publish contracts
             "contracts" => [
-                "$basePath/./Contracts/" => app_path('Contracts/')
+                "$basePath/./Interfaces/" => app_path('Interfaces/')
             ],
 
             "traits" => [

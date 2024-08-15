@@ -7,11 +7,11 @@ use Cron\HoursField;
 /**
  * Format the time to the dashboard standard
  *
- * @param integer $milliseconds
- * @param string $format
+ * @param  integer  $milliseconds
+ *
  * @return string the formatted time
  */
-function dashboardTimeFormat(int $milliseconds)
+function dashboardTimeFormat(int $milliseconds): string
 {
     $hours = (int) ($milliseconds / 3600000);
     $minutes = (int) ($milliseconds / 60000);

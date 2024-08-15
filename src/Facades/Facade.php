@@ -7,9 +7,9 @@ use RuntimeException;
 abstract class Facade
 {
     /**
-     * The name of the resolved facaded instance
+     * The name of the resolved facade instance
      *
-     * @var arary
+     * @var array
      */
     protected static $resolvedInstanceName;
 
@@ -26,7 +26,6 @@ abstract class Facade
     /**
      * Resolve the facade root instance from the container,
      *
-     * @param object|string $name
      * @return mixed
      */
     protected static function resolveFacadeInstanceName()

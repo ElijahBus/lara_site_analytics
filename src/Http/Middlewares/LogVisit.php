@@ -66,11 +66,13 @@ class LogVisit
         return $response->withCookie(cookie()->forever('rwb_a', $cookieValue));
     }
 
-
     /**
      * Log the incoming visit to the site into the database
      *
-     * @param Request $request
+     * @param  Request  $request
+     * @param $cookie
+     * @param  int|null  $returningVisitorId
+     *
      * @return string $cookieValue The value of the new cookie set for the user
      */
     private function logVisit(Request $request, $cookie, int $returningVisitorId = null)
@@ -163,16 +165,18 @@ class LogVisit
     /**
      * Keep the visitor session alive as long as there are hits and page views
      *
-     * @param int $id
+     * @param $token
+     *
      * @return void
      */
-    private function updateVisitorStatus($token)
+    private function updateVisitorStatus($token): void
     {
         $visitor = VisitorProfile::where('token', $token)->first();
-        if($visitor != null)
-            return $visitor->update([
+        if($visitor != null) {
+            $visitor->update([
                 'is_auth' => true,
                 'user_id' => Auth::user()->id,
             ]);
+        }
     }
 }

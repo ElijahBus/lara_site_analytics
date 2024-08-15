@@ -17,13 +17,13 @@ class UsersComposer
     /**
      * Find the values of analytics to pass the to the view
      *
-     * @return array|mixed
+     * @return array
      */
-    private function homeAnalytics()
+    private function homeAnalytics(): array
     {
         return
             [
-                "authVisitorsInfo" => DashboardAnalytics::authVisitorsInfo(),
+                "authVisitorsInfo" => AnalyticsInterface::authVisitorsInfo(),
             ];
     }
 }

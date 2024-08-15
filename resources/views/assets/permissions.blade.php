@@ -367,29 +367,7 @@
                                 <div class="card sizing4 card-common">
                                     <div class="card-body">
                                         <h3 class="text-dark text-left mb-3">Permissions  </h3>
-                                        {{-- <div class="col-md-2    ">
-                                            <select class="form-control control" name="cars" id="cars">
-                                                <option value="volvo">All</option>
-                                                <option value="saab">Saab</option>
-                                                <option value="mercedes">Mercedes</option>
-                                                <option value="audi">Audi</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-2 mx-2">
-                                            <select class="form-control control" name="cars" id="cars">
-                                                <option value="volvo">Filter By</option>
-                                                <option value="saab">Saab</option>
-                                                <option value="mercedes">Mercedes</option>
-                                                <option value="audi">Audi</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <form>
-                                                <div class="input-group">
-                                                    <input type="text" class="form-control search-input text-dark" placeholder="Search...">
-                                                </div>
-                                            </form>
-                                        </div> --}}
+
                                         <div class="row mb-4 rowu">
                                             <div class="col users-search-continer">
                                                 <form action="{{ route('permission.display') }}" method="post" class="d-flex">

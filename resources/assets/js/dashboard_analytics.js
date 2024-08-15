@@ -4,9 +4,9 @@ const readAnalyticsCookie = (name) => {
 }
 
 /**
- * Log page visit whenever the pasge is loaded
+ * Log page visit whenever the page is loaded
  */
-if (document.readyState == "loading") daPageView();
+if (document.readyState === "loading") daPageView();
 
 async function sendData(url = '', data = {}) {
     const response = await fetch(url, {
@@ -49,8 +49,10 @@ async function daFeatureVisit(featureName) {
         .catch(err => { console.log(err) });
 }
 
-
-// functions that detect the screen resolution of a device
+/**
+ * Detect and return the device screen resolution
+ * @return {number}
+ */
 function getResolution() {
     // > 1200 = web
     // < 450 = mobile

@@ -11,13 +11,13 @@ use Dashboard\Facades\Model;
 use Illuminate\Support\Facades\DB;
 use function App\Helpers\dashboardTimeFormat;
 
-use App\Contracts\DashboardAnalytics as ContractsDashboardAnalytics;
+use App\Contracts\AnalyticsInterface as ContractsDashboardAnalytics;
 
 define('ANALYTICS_WEEK_START_DATE', Carbon::today()->subDays(6)->format('Y-m-d'));
 define('ANALYTICS_WEEK_END_DATE', Carbon::today()->format('Y-m-d'));
 define('ANALYTICS_USER_MODEL', Model::user());
 
-class DashboardAnalytics  implements ContractsDashboardAnalytics
+class AnalyticsInterface  implements ContractsDashboardAnalytics
 {
     /**
      * Carbon time that help calculate the weekly start date and end date
@@ -65,7 +65,7 @@ class DashboardAnalytics  implements ContractsDashboardAnalytics
      *
      * @return integer
      */
-    public static function getDailyLoggedInUsers()
+    public static function getDailyLoggedInUsers(): int
     {
         // WARNING: Return placeholder value to replace by the real data
         return 300;
@@ -76,7 +76,7 @@ class DashboardAnalytics  implements ContractsDashboardAnalytics
      *
      * @return integer
      */
-    public static function getWeeklyLoggedInUsers()
+    public static function getWeeklyLoggedInUsers(): int
     {
         // WARNING: Return placeholder value to replace by the real data
         return 432;
@@ -88,7 +88,7 @@ class DashboardAnalytics  implements ContractsDashboardAnalytics
      *
      * @return integer
      */
-    public static function getMonthlyLoggedInUsers()
+    public static function getMonthlyLoggedInUsers(): int
     {
         return self::getMonthlyAuthUsers() + self::getMonthlyNonAuthUsers();
     }
@@ -98,7 +98,7 @@ class DashboardAnalytics  implements ContractsDashboardAnalytics
      *
      * @return integer
      */
-    public static function getWebVisitors()
+    public static function getWebVisitors(): int
     {
         $daysStartDate = Carbon::tomorrow()->subDays(90)->format('Y-m-d');
         $daysEndDate = Carbon::tomorrow()->format('Y-m-d');
@@ -138,7 +138,7 @@ class DashboardAnalytics  implements ContractsDashboardAnalytics
      *
      * @return integer
      */
-    public static function getMobileAppVisitors()
+    public static function getMobileAppVisitors(): int
     {
         // WARNING: Return placeholder value to replace by real data
         return 0;
@@ -149,7 +149,7 @@ class DashboardAnalytics  implements ContractsDashboardAnalytics
      *
      * @return array
      */
-    public static function getWeeklyAuthUsers()
+    public static function getWeeklyAuthUsers(): array
     {
         $authUsersCounts = [];
         $dates = [];
@@ -177,7 +177,7 @@ class DashboardAnalytics  implements ContractsDashboardAnalytics
      *
      * @return array
      */
-    public static function getWeeklyNonAuthUsers()
+    public static function getWeeklyNonAuthUsers(): array
     {
         $nonAuthUsersCounts = [];
         $dates = [];
@@ -206,7 +206,7 @@ class DashboardAnalytics  implements ContractsDashboardAnalytics
      *
      * @return integer
      */
-    public static function getMonthlyAuthUsers()
+    public static function getMonthlyAuthUsers(): int
     {
         $monthStartDate = Carbon::tomorrow()->subMonth()->format('Y-m-d');
         $monthEndDate = Carbon::tomorrow()->format('Y-m-d');
@@ -229,7 +229,7 @@ class DashboardAnalytics  implements ContractsDashboardAnalytics
      *
      * @return integer
      */
-    public static function getMonthlyNonAuthUsers()
+    public static function getMonthlyNonAuthUsers(): int
     {
         $monthStartDate = Carbon::tomorrow()->subMonth()->format('Y-m-d');
         $monthEndDate = Carbon::tomorrow()->format('Y-m-d');
@@ -251,7 +251,7 @@ class DashboardAnalytics  implements ContractsDashboardAnalytics
      *
      * @return array
      */
-    public static function getWeeklyActiveUsers()
+    public static function getWeeklyActiveUsers(): array
     {
         $allActiveUsers = self::getActiveUsers(6, 7);
         $authActiveUsers = self::getAuthActiveUsers(6);
@@ -267,7 +267,7 @@ class DashboardAnalytics  implements ContractsDashboardAnalytics
      *
      * @return array
      */
-    public static function getMonthlyActiveUsers()
+    public static function getMonthlyActiveUsers(): array
     {
         $oneLineData = self::getActiveUsers(27, 28);
         $detailedData = self::getActiveUsers(27, 7);
@@ -286,7 +286,7 @@ class DashboardAnalytics  implements ContractsDashboardAnalytics
      *
      * @return array
      */
-    public static function getThreeMonthsActiveUsers()
+    public static function getThreeMonthsActiveUsers(): array
     {
         $activeUsers = self::getActiveUsers(83, 28);
 
@@ -321,7 +321,7 @@ class DashboardAnalytics  implements ContractsDashboardAnalytics
      *
      * @return array
      */
-    public static function getSixMonthsActiveUsers()
+    public static function getSixMonthsActiveUsers(): array
     {
         $activeUsers = self::getActiveUsers(167, 28);
 
@@ -356,7 +356,7 @@ class DashboardAnalytics  implements ContractsDashboardAnalytics
      *
      * @return array
      */
-    public static function getYearlyActiveUsers()
+    public static function getYearlyActiveUsers(): array
     {
         $activeUsers = self::getActiveUsers(335, 28);
 
@@ -513,7 +513,7 @@ class DashboardAnalytics  implements ContractsDashboardAnalytics
      *
      * @return array
      */
-    public static function getNewUsersRetention()
+    public static function getNewUsersRetention(): array
     {
         $newUsersCount = [];
         $dates = [];
@@ -541,7 +541,7 @@ class DashboardAnalytics  implements ContractsDashboardAnalytics
      *
      * @return array
      */
-    public static function getReturningUsersRetention()
+    public static function getReturningUsersRetention(): array
     {
         $returningUsersCount = [];
         $dates = [];
@@ -608,7 +608,7 @@ class DashboardAnalytics  implements ContractsDashboardAnalytics
     }
 
     /**
-     * Get the time non authenticated users spent on the site
+     * Get the time non-authenticated users spent on the site
      *
      * @return mixed
      */
